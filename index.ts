@@ -1,10 +1,17 @@
-import { generate } from "./src/generator";
+import { frenchCityNameGenerator } from "./src/generator";
 
 function main() {
-  for (let i = 0; i < 50; i++) {
-    const word = generate("startRule");
-    console.log(word);
+  const frenchCityNames = frenchCityNameGenerator();
+  const repartition: { [key: string]: number } = {};
+  for (let i = 0; i < 10; i++) {
+    const word = frenchCityNames.next().value;
+    if (repartition[word]) {
+      repartition[word]++;
+    } else {
+      repartition[word] = 1;
+    }
   }
+  console.log(repartition);
 }
 
 main();

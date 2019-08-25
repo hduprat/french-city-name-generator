@@ -2,7 +2,7 @@
   "name": "french-city-generator",
   "version": "0.0.1",
   "description": "French city name generator",
-  "main": "index.ts",
+  "main": "generator.ts",
   "author": "Hugo Duprat",
   "license": "MIT",
   "devDependencies": {

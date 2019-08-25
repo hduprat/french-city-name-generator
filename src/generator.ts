@@ -1,7 +1,7 @@
 import { random100, getRuleThresholds, oneOf } from "./utils";
 import { RuleType, rules, hasFixedValue, Rule } from "./rules";
 
-export const generate = (initialRuleType: RuleType): string => {
+const generate = (initialRuleType: RuleType): string => {
   let ruleType: RuleType | undefined = initialRuleType;
   let currentValue = "";
   do {
@@ -20,3 +20,9 @@ export const generate = (initialRuleType: RuleType): string => {
   } while (!!ruleType);
   return currentValue;
 };
+
+export function* frenchCityNameGenerator() {
+  while (true) {
+    yield generate("startRule");
+  }
+}
