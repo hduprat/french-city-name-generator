@@ -23,17 +23,17 @@ export interface Rule {
 }
 
 const firstSyllableSet = ["Tor", "Tr", "Arb", "Omb", "Flor", "Veg", "Ur"];
-const middleSyllableSet = ["oz", "i", "onz", "ilh", "er"];
-const lastSyllableSet = ["ac", "ay", "émont", "ès", "éville"];
+const middleSyllableSet = ["oz", "i", "onz", "ilh", "er", "us"];
+const lastSyllableSet = ["ac", "ay", "émont", "ès", "éville", "on"];
 const laSuffixSet = ["Forêt", "Ville", "Belle", "Vieille", "Mine", "Plaine"];
 const lesSuffixSet = ["Roses", "Monts", "Bains", "Champs"];
 
 const startRule: Rule = {
-  70: {
+  75: {
     valueInSet: firstSyllableSet,
     next: "endRule"
   },
-  95: {
+  99: {
     valueInSet: firstSyllableSet,
     next: "middleRule"
   },
