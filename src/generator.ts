@@ -1,5 +1,5 @@
-import { random100, getRuleThresholds } from "./utils";
-import { RuleType, rules } from "./rules";
+import { random100, getRuleThresholds, oneOf } from "./utils";
+import { RuleType, rules, hasFixedValue } from "./rules";
 
 export const generate = (
   ruleType: RuleType,
@@ -10,10 +10,15 @@ export const generate = (
   const ruleThresholds = getRuleThresholds(rule);
 
   const selectedThreshold = ruleThresholds.find(threshold => n <= threshold);
-  const selectedRule = rule[selectedThreshold || ruleThresholds.length - 1];
+  const selectedRuleCase = rule[selectedThreshold || ruleThresholds.length - 1];
 
-  const newValue = `${currentValue}${selectedRule.value}`;
+  let newValue;
+  if (hasFixedValue(selectedRuleCase))
+    newValue = `${currentValue}${selectedRuleCase.value}`;
+  else {
+    newValue = `${currentValue}${oneOf(selectedRuleCase.valueInSet)}`;
+  }
 
-  if (!selectedRule.next) return newValue;
-  return generate(selectedRule.next, newValue);
+  if (!selectedRuleCase.next) return newValue;
+  return generate(selectedRuleCase.next, newValue);
 };

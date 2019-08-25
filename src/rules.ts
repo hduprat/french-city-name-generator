@@ -1,23 +1,32 @@
-interface RuleCase {
-  value: string;
+interface BaseRuleCase {
   next?: RuleType;
 }
+
+interface RuleCaseValue extends BaseRuleCase {
+  value: string;
+}
+
+interface RuleCaseValueInSet extends BaseRuleCase {
+  valueInSet: string[];
+}
+
+type RuleCase = RuleCaseValue | RuleCaseValueInSet;
+
+export const hasFixedValue = (
+  ruleCase: RuleCase
+): ruleCase is RuleCaseValue => {
+  return !!(ruleCase as RuleCaseValue).value;
+};
 
 export interface Rule {
   [n: number]: RuleCase;
 }
 
+const firstSyllableSet = ["tor", "tarn", "arb"];
+
 const startRule: Rule = {
-  50: {
-    value: "tor",
-    next: "endRule"
-  },
-  75: {
-    value: "tarn",
-    next: "endRule"
-  },
   95: {
-    value: "arb",
+    valueInSet: firstSyllableSet,
     next: "endRule"
   },
   100: {
