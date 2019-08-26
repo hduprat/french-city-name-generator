@@ -1,5 +1,5 @@
 {
-  "name": "french-city-generator",
+  "name": "french-city-name-generator",
   "version": "0.0.1",
   "description": "French city name generator",
   "main": "generator.ts",

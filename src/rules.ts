@@ -25,8 +25,28 @@ export interface Rule {
 const firstSyllableSet = ["Tor", "Tr", "Arb", "Omb", "Flor", "Veg", "Ur"];
 const middleSyllableSet = ["oz", "i", "onz", "ilh", "er", "us"];
 const lastSyllableSet = ["ac", "ay", "émont", "ès", "éville", "on"];
-const laSuffixSet = ["Forêt", "Ville", "Belle", "Vieille", "Mine", "Plaine"];
-const lesSuffixSet = ["Roses", "Monts", "Bains", "Champs"];
+const laSuffixSet = [
+  "Forêt",
+  "Ville",
+  "Belle",
+  "Vieille",
+  "Mine",
+  "Plaine",
+  "Tour",
+  "Garde"
+];
+const lesSuffixSet = ["Roses", "Monts", "Bains", "Champs", "Tours"];
+const surSuffixSet = [
+  "Rhône",
+  "Garonne",
+  "Saône",
+  "Adour",
+  "Loire",
+  "le-Rhin",
+  "Seine",
+  "Marne",
+  "Somme"
+];
 
 const startRule: Rule = {
   75: {
@@ -50,7 +70,7 @@ const middleRule: Rule = {
 };
 
 const endRule: Rule = {
-  5: {
+  7: {
     valueInSet: lastSyllableSet,
     next: "stopRule"
   },
@@ -64,9 +84,13 @@ const stopRule: Rule = {
     value: "-les-",
     next: "lesRule"
   },
-  100: {
+  85: {
     value: "-la-",
     next: "laRule"
+  },
+  100: {
+    value: "-sur-",
+    next: "surRule"
   }
 };
 
@@ -82,12 +106,19 @@ const lesRule: Rule = {
   }
 };
 
+const surRule: Rule = {
+  100: {
+    valueInSet: surSuffixSet
+  }
+};
+
 export const rules = {
   startRule,
   middleRule,
   endRule,
   laRule,
   lesRule,
+  surRule,
   stopRule
 };
 

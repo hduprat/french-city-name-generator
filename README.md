@@ -1,3 +1,3 @@
-# french_city_generator
+# french-city-name-generator
 
-French-looking city name generator.
+French-sounding city name generator.

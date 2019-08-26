@@ -22,7 +22,14 @@ const generate = (initialRuleType: RuleType): string => {
 };
 
 export function* frenchCityNameGenerator() {
+  let memo: string[] = [];
   while (true) {
-    yield generate("startRule");
+    const city = generate("startRule");
+    if (!memo.includes(city)) {
+      memo = [...memo, city];
+      yield city;
+    } else {
+      // console.log("City already generated:", city);
+    }
   }
 }
